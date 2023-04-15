@@ -53,7 +53,7 @@ class _FeatureDiscoveryPage2State extends State<FeatureDiscoveryPage2> {
           targetColor: featureList.elementAt(0).targetColor,
           textColor: featureList.elementAt(0).textColor,
           description: featureList.elementAt(0).description,
-          child: Icon(Icons.menu),
+          child: const Icon(Icons.menu),
         ),
         actions: [
           DescribedFeatureOverlay(

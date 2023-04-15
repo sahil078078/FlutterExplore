@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_explore/FeatureDiscovery2/feature_id_const.dart';
 
