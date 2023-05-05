@@ -2,12 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'VideoPlayer/video_player_home.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
         // systemNavigationBarColor: Colors.blue, // navigation bar color
         // statusBarColor: Colors.pink, // status bar color
         ),
+  );
+
+  await SystemChrome.setPreferredOrientations(
+    [
+      DeviceOrientation.portraitUp,
+      // DeviceOrientation.portraitDown,
+      // DeviceOrientation.landscapeLeft,
+      // DeviceOrientation.landscapeRight,
+
+      /*
+      lock app orientation and only portraitUp mode active, 
+      */
+    ],
   );
   runApp(
     const StartingPoint(),
