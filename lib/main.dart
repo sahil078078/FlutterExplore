@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'VideoPlayer/video_player_home.dart';
+import 'GoogleSheet1Basic/google_sheet1_home.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -43,7 +43,7 @@ class StartingPoint extends StatelessWidget {
           backgroundColor: Colors.brown.shade400,
         ),
       ),
-      home: const VideoPlayerHome(),
+      home: const GoogleSheet1Home(),
     );
   }
 }
