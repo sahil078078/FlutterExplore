@@ -13,10 +13,10 @@ class FeedbackFromModel {
 
   factory FeedbackFromModel.fromJson(Map<String, dynamic> json) =>
       FeedbackFromModel(
-        name: json['name'],
-        mobile: json['mobile'],
-        email: json['email'],
-        feedback: json['feedback'],
+        name: json['name'].toString(),
+        mobile: json['mobile'].toString(),
+        email: json['email'].toString(),
+        feedback: json['feedback'].toString(),
       );
 
   Map<String, dynamic> toJson() => {

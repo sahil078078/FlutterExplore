@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_function_literals_in_foreach_calls
+
 import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
@@ -6,9 +8,7 @@ import 'feedback_form_class.dart';
 
 class FormController {
   final String url =
-      "https://script.google.com/macros/s/AKfycbzVqR41k2ZoG25JYvJ72mds1CR-W-hy36UZ80Y93btJwnLHgUjhMWi1KxM3SAvWjyeu/exec";
-
-  //"https://script.google.com/macros/s/AKfycbzVqR41k2ZoG25JYvJ72mds1CR-W-hy36UZ80Y93btJwnLHgUjhMWi1KxM3SAvWjyeu/exec"
+      "https://script.google.com/macros/s/AKfycbzfMzcSQjWdbsPtf_FjpvJnEm7SYMlNNPS_mBBMZE2OYDC8Psy_uwvWZQbtxUpNc1pT/exec";
 
   // Success Status Message
   static const status = "SUCCESS";
@@ -36,14 +36,18 @@ class FormController {
           if (response.statusCode == 200 || response.statusCode == 302) {
             // 302 mobile
             // 200 web
-            final url = response.headers["location"] ?? "";
-            debugPrint('url => $url');
-            await http.get(Uri.parse(url)).then(
-              (res) {
-                debugPrint('res => $res  ==> ${res.body}');
-                callback(jsonDecode(res.body)["status"]);
-              },
-            );
+            if (response.statusCode == 302) {
+              final url = response.headers["location"] ?? "";
+              debugPrint('url => $url');
+              await http.get(Uri.parse(url)).then(
+                (res) {
+                  debugPrint('res => $res  ==> ${res.body}');
+                  callback(jsonDecode(res.body)["status"]);
+                },
+              );
+            } else {
+              callback(jsonDecode(response.body)["status"]);
+            }
           } else {
             callback(jsonDecode(response.body)["status"]);
           }
@@ -53,6 +57,32 @@ class FormController {
       debugPrint("HttpException Error : $e");
     } catch (e) {
       debugPrint("catchError : $e");
+    }
+  }
+
+  /// get list from googleSheet
+
+  Future<List<FeedbackFromModel>> getFeedbackList() async {
+    try {
+      return await http.get(Uri.parse(url)).then(
+        (response) async {
+          debugPrint('responseCode : ${response.statusCode}');
+          debugPrint(
+              'getResponse =>${response.body.runtimeType} ${response.body}');
+          final list = jsonDecode(response.body);
+          list.forEach((element) {
+            debugPrint('Get=>$element');
+          });
+          return List.from(
+            list.map(
+              (e) => FeedbackFromModel.fromJson(e),
+            ),
+          );
+        },
+      );
+    } catch (e) {
+      debugPrint('error : $e');
+      return [];
     }
   }
 }

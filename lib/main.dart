@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'GoogleSheet1Basic/google_sheet1_home.dart';
+import 'GoogleSheet1Basic/sheet1_view_response.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -43,7 +43,7 @@ class StartingPoint extends StatelessWidget {
           backgroundColor: Colors.brown.shade400,
         ),
       ),
-      home: const GoogleSheet1Home(),
+      home: const Sheet1ViewResponse(),
     );
   }
 }

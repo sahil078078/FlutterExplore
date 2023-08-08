@@ -3,14 +3,14 @@ import 'package:flutter/services.dart';
 import 'package:flutter_explore/GoogleSheet1Basic/feedback_form_class.dart';
 import 'package:flutter_explore/GoogleSheet1Basic/form_controller.dart';
 
-class GoogleSheet1Home extends StatefulWidget {
-  const GoogleSheet1Home({Key? key}) : super(key: key);
+class Sheet1CreateResponse extends StatefulWidget {
+  const Sheet1CreateResponse({Key? key}) : super(key: key);
 
   @override
-  State<GoogleSheet1Home> createState() => _GoogleSheet1HomeState();
+  State<Sheet1CreateResponse> createState() => _Sheet1CreateResponseState();
 }
 
-class _GoogleSheet1HomeState extends State<GoogleSheet1Home> {
+class _Sheet1CreateResponseState extends State<Sheet1CreateResponse> {
   // controllers
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
@@ -40,6 +40,7 @@ class _GoogleSheet1HomeState extends State<GoogleSheet1Home> {
         callback: (response) {
           debugPrint('response <=> <=> <=> $response');
           _showSnackBar(context);
+          Navigator.pop(context, response);
         },
       );
     }
@@ -63,7 +64,7 @@ class _GoogleSheet1HomeState extends State<GoogleSheet1Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("GoogleSheetBasic"),
+        title: const Text("Create Response"),
       ),
       body: Form(
         key: _formKey,
@@ -83,7 +84,10 @@ class _GoogleSheet1HomeState extends State<GoogleSheet1Home> {
                     return "Please enter your name";
                   },
                   decoration: const InputDecoration(
-                      labelText: "Name", hintText: "Enter your name"),
+                    floatingLabelBehavior: FloatingLabelBehavior.always,
+                    labelText: "Name",
+                    hintText: "Enter your name",
+                  ),
                 ),
                 const SizedBox(height: 15),
                 TextFormField(
@@ -95,6 +99,7 @@ class _GoogleSheet1HomeState extends State<GoogleSheet1Home> {
                   maxLines: 1,
                   maxLength: 10,
                   decoration: const InputDecoration(
+                    floatingLabelBehavior: FloatingLabelBehavior.always,
                     labelText: "Mobile",
                     hintText: "Enter your mobile",
                     counterText: "",
@@ -132,6 +137,7 @@ class _GoogleSheet1HomeState extends State<GoogleSheet1Home> {
                     return "Please enter your email";
                   },
                   decoration: const InputDecoration(
+                    floatingLabelBehavior: FloatingLabelBehavior.always,
                     labelText: "Email",
                     hintText: "Enter your email",
                   ),
@@ -139,12 +145,13 @@ class _GoogleSheet1HomeState extends State<GoogleSheet1Home> {
                 const SizedBox(height: 15),
                 TextFormField(
                   controller: feedbackController,
-                  maxLines: 5,
+                  maxLines: 3,
                   validator: (feed) {
                     if (feed != null && feed.trim().isNotEmpty) return null;
                     return "Please enter your feedback";
                   },
                   decoration: const InputDecoration(
+                    floatingLabelBehavior: FloatingLabelBehavior.always,
                     alignLabelWithHint: true,
                     labelText: "Feedback",
                     hintText: "Enter feedback",
