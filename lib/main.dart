@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
 import 'GoogleSheet1Basic/sheet1_view_response.dart';
+import 'GoogleSheetWithCredential/users_sheets_api.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  // * This is for init google sheet before used
+  await UserSheetsAPI.init();
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
         // systemNavigationBarColor: Colors.blue, // navigation bar color
@@ -54,7 +58,5 @@ enum ThemeEnum {
 }
 
 getTheme() {
-  switch (ThemeEnum) {
-    
-  }
+  switch (ThemeEnum) {}
 }

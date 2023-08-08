@@ -74,7 +74,7 @@ class _FeatureDiscoveryPage2State extends State<FeatureDiscoveryPage2> {
         onPressed: () {},
         child: const Icon(Icons.add),
       ),
-      body: Column(),
+      body: const Column(),
     );
   }
 }
