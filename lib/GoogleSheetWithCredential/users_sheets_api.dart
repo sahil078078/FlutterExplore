@@ -49,4 +49,17 @@ class UserSheetsAPI {
       return spreadsheet.worksheetByTitle(title)!;
     }
   }
+
+  static Future<int> getRowCount() async {
+    if (_userSheet == null) return 0;
+    final lastRow = await _userSheet?.values.lastRow();
+    return int.tryParse(lastRow?.first ?? "0") ?? 0;
+  }
+
+  static Future<bool> insert(
+    List<Map<String, dynamic>> rowList,
+  ) async {
+    if (_userSheet == null) return false;
+    return await _userSheet?.values.map.appendRows(rowList) ?? false;
+  }
 }

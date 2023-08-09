@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_explore/GoogleSheetWithCredential/Pages/create_sheet_page.dart';
 
 import 'GoogleSheet1Basic/sheet1_view_response.dart';
 import 'GoogleSheetWithCredential/users_sheets_api.dart';
@@ -47,7 +48,7 @@ class StartingPoint extends StatelessWidget {
           backgroundColor: Colors.brown.shade400,
         ),
       ),
-      home: const Sheet1ViewResponse(),
+      home: const CreateSheetPage(),
     );
   }
 }
