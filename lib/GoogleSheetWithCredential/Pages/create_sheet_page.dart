@@ -21,7 +21,7 @@ class CreateSheetPage extends StatelessWidget {
           onSaveUser: (user) async {
             // final id = await UserSheetsAPI.getRowCount() + 1;
             // final newUser = user.copy(id: id);
-            for (int i = 0; i < 10000; i++) {
+            for (int i = 0; i < 1000000; i++) {
               final id = await UserSheetsAPI.getRowCount() + 1;
               final newUser = user.copy(id: id);
               await UserSheetsAPI.insert([newUser.toJson()]);
