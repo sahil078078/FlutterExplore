@@ -1,3 +1,5 @@
+// ignore_for_file: sdk_version_since
+
 class UserFields {
   static const String id = "ID";
   static const String name = "Name";
@@ -20,17 +22,19 @@ class User {
   });
 
   factory User.fromJson(Map<String, dynamic> json) => User(
-        id: json[UserFields.id],
+        id: int.tryParse(json[UserFields.id] ?? "0"),
         name: json[UserFields.name],
         email: json[UserFields.email],
-        isBeginner: json[UserFields.isBeginner],
+        isBeginner: bool.tryParse(json[UserFields.isBeginner]) ?? false,
       );
+
   Map<String, dynamic> toJson() => {
         UserFields.id: id,
         UserFields.name: name,
         UserFields.email: email,
         UserFields.isBeginner: isBeginner,
       };
+
   User copy({
     int? id,
     String? name,

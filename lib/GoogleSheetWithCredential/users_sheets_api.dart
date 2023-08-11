@@ -56,6 +56,22 @@ class UserSheetsAPI {
     return int.tryParse(lastRow?.first ?? "0") ?? 0;
   }
 
+  static Future<User?> getById(int id) async {
+    if (_userSheet == null) return null;
+    final json = await _userSheet?.values.map.rowByKey(id, fromColumn: 2);
+    debugPrint('json => $json');
+    return json != null ? User.fromJson(json) : null;
+  }
+
+  static Future<List<User>> getAll() async {
+    if (_userSheet == null) return <User>[];
+    final users = await _userSheet?.values.map.allRows();
+
+    return users != null
+        ? users.map((_) => User.fromJson(_)).toList()
+        : <User>[];
+  }
+
   static Future<bool> insert(
     List<Map<String, dynamic>> rowList,
   ) async {

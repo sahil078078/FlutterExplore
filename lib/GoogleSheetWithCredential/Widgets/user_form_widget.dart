@@ -3,8 +3,9 @@ import 'package:flutter_explore/GoogleSheetWithCredential/Models/user.dart';
 import 'package:flutter_explore/GoogleSheetWithCredential/Widgets/button_widgets.dart';
 
 class UserFromWidget extends StatefulWidget {
+  final User? user;
   final ValueChanged<User> onSaveUser;
-  const UserFromWidget({super.key, required this.onSaveUser});
+  const UserFromWidget({super.key, required this.onSaveUser, this.user});
 
   @override
   State<UserFromWidget> createState() => _UserFromWidgetState();
@@ -15,6 +16,28 @@ class _UserFromWidgetState extends State<UserFromWidget> {
   final nameController = TextEditingController();
   final emailController = TextEditingController();
   bool isBeginner = true;
+
+  @override
+  void initState() {
+    super.initState();
+
+    initUser();
+  }
+
+  @override
+  void didUpdateWidget(covariant UserFromWidget oldWidget) {
+    initUser();
+    super.didUpdateWidget(oldWidget);
+  }
+
+  void initUser() {
+    setState(() {
+      nameController.text = widget.user?.name ?? "";
+      emailController.text = widget.user?.email ?? "";
+      isBeginner = widget.user?.isBeginner ?? false;
+    });
+  }
+
   @override
   Widget build(BuildContext context) => Form(
         key: formKey,

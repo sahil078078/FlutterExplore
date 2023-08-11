@@ -23,7 +23,9 @@ class _VideoDetailsState extends State<VideoDetails> {
   late VideoPlayerController _controller;
 
   void videoPlayerInit() async {
-    _controller = VideoPlayerController.network(widget.videoInfo.sources)
+    _controller = VideoPlayerController.networkUrl(
+      Uri.parse(widget.videoInfo.sources),
+    )
       ..setLooping(false)
       ..addListener(
         () {
