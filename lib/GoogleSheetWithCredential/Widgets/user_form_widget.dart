@@ -88,6 +88,7 @@ class _UserFromWidgetState extends State<UserFromWidget> {
           if (formKey.currentState != null &&
               formKey.currentState!.validate()) {
             final user = User(
+              id: widget.user?.id, // ! For Update
               name: nameController.text.trim(),
               email: emailController.text.trim(),
               isBeginner: isBeginner,

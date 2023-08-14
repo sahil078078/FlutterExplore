@@ -7,6 +7,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // * This is for init google sheet before used
   await UserSheetsAPI.init();
+  await UserFormAPI2.init();
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
         // systemNavigationBarColor: Colors.blue, // navigation bar color
@@ -51,5 +52,3 @@ class StartingPoint extends StatelessWidget {
     );
   }
 }
-
-
